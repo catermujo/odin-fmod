@@ -1,0 +1,26 @@
+package fmod_fsbank
+
+FANCY_ERR: [Result]string = {
+    .ok                          = "No errors.",
+    .err_cache_chunknotfound     = "An expected chunk is missing from the cache, perhaps try deleting cache files.",
+    .err_cancelled               = "The build process was cancelled during compilation by the user.",
+    .err_cannot_continue         = "The build process cannot continue due to previously ignored errors.",
+    .err_encoder                 = "Encoder for chosen format has encountered an unexpected error.",
+    .err_encoder_init            = "Encoder initialization failed.",
+    .err_encoder_notsupported    = "Encoder for chosen format is not supported on this platform.",
+    .err_file_os                 = "An operating system based file error was encountered.",
+    .err_file_notfound           = "A specified file could not be found.",
+    .err_fmod                    = "Internal error from FMOD sub-system.",
+    .err_initialized             = "Already initialized.",
+    .err_invalid_format          = "The format of the source file is invalid.",
+    .err_invalid_param           = "An invalid parameter has been passed to this function.",
+    .err_memory                  = "Run out of memory.",
+    .err_uninitialized           = "Not initialized yet.",
+    .err_writer_format           = "Chosen encode format is not supported by this FSB version.",
+    .warn_cannotloop             = "Source file is too short for seamless looping. Looping disabled.",
+    .warn_ignored_filterhighfreq = "FSBANK_BUILD_FILTERHIGHFREQ flag ignored: feature only supported by XMA format.",
+    .warn_ignored_disableseeking = "FSBANK_BUILD_DISABLESEEKING flag ignored: feature only supported by XMA format.",
+    .warn_forced_dontwritenames  = "FSBANK_BUILD_FSB5_DONTWRITENAMES flag forced: cannot write names when source is from memory.",
+    .err_encoder_file_notfound   = "External encoder dynamic library not found.",
+    .err_encoder_file_bad        = "External encoder dynamic library could not be loaded, possibly incorrect binary format, incorrect architecture, or file corruption.",
+}
