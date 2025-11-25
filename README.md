@@ -6,25 +6,14 @@ Includes `core`, `fsbank` and `studio` APIs. The `dll` and `lib` files are downl
 
 [FMOD API documentation](https://www.fmod.com/docs/2.00/api/welcome.html)
 
-Current FMOD version: `2.02.15`
+Make sure to include the fmod logo on your project and register it on their website unless you're making a ton of money!
+Check out <https://www.fmod.com/attribution>.
 
-## Example
+<img width="124" height="36" alt="logo" src="https://github.com/user-attachments/assets/afbb648a-dcf4-4326-9fa0-b2ca3a4d215c" />
 
-You can see example usage in [example.odin](example/example.odin). Runs on raylib.
-
-Run with:
-
-```cmd
-cd example
-odin run .
-```
+Current FMOD version: `2.03.11`
 
 ## TODO
 
 - Add more examples
-- Translate constants to enums and bit_sets.
 - Implement odin wrappers for common procedures, to allow usage of slices and maybe allocators.
-
-## Contributing
-
-All contributions are welcome, I will try to merge them when I can!
