@@ -8,7 +8,7 @@ package fmod_core
 /* and generators.                                                                                               */
 /*                                                                                                               */
 /* For more detail visit:                                                                                        */
-/* https://fmod.com/docs/2.02/api/core-api-common-dsp-effects.html#fmod_dsp_type                                 */
+/* https://fmod.com/docs/2.03/api/core-api-common-dsp-effects.html#fmod_dsp_type                                 */
 /* ============================================================================================================= */
 
 DSP_Type :: enum i32 {
@@ -49,6 +49,7 @@ DSP_Type :: enum i32 {
     transceiver,
     objectpan,
     multiband_eq,
+    multiband_dynamics,
     max,
 }
 
@@ -75,6 +76,13 @@ DSP_Echo :: enum i32 {
     feedback,
     drylevel,
     wetlevel,
+    delaychangemode,
+}
+
+DSP_DelayChangeMode_Type :: enum i32 {
+    fade,
+    lerp,
+    none,
 }
 
 DSP_Fader :: enum i32 {
@@ -149,8 +157,49 @@ DSP_Multiband_EQ_Filter_Type :: enum i32 {
     bandpass,
     notch,
     allpass,
+    lowpass_6db,
+    highpass_6db,
 }
 
+
+DSP_Multiband_Dynamics :: enum i32 {
+    lower_frequency,
+    upper_frequency,
+    linked,
+    use_sidechain,
+    a_mode,
+    a_gain,
+    a_threshold,
+    a_ratio,
+    a_attack,
+    a_release,
+    a_gain_makeup,
+    a_response_data,
+    b_mode,
+    b_gain,
+    b_threshold,
+    b_ratio,
+    b_attack,
+    b_release,
+    b_gain_makeup,
+    b_response_data,
+    c_mode,
+    c_gain,
+    c_threshold,
+    c_ratio,
+    c_attack,
+    c_release,
+    c_gain_makeup,
+    c_response_data,
+}
+
+DSP_Multiband_Dynamics_Mode_Type :: enum i32 {
+    disabled,
+    compress_up,
+    compress_down,
+    expand_up,
+    expand_down,
+}
 
 DSP_Pitchshift :: enum i32 {
     pitch,
@@ -322,7 +371,7 @@ DSP_Three_EQ :: enum i32 {
     crossoverslope,
 }
 
-DSP_FFT_Window :: enum i32 {
+DSP_FFT_Window_Type :: enum i32 {
     rect,
     triangle,
     hamming,
@@ -331,11 +380,23 @@ DSP_FFT_Window :: enum i32 {
     blackmanharris,
 }
 
+DSP_FFT_Downmix_Type :: enum i32 {
+    none,
+    mono,
+}
+
 DSP_FFT :: enum i32 {
     windowsize,
-    windowtype,
+    window,
+    band_start_freq,
+    band_stop_freq,
     spectrumdata,
-    dominant_freq,
+    rms,
+    // previously dominant_freq
+    spectral_centroid,
+    immediate_mode,
+    downmix,
+    channel,
 }
 
 DSP_Loudness_Meter :: enum i32 {

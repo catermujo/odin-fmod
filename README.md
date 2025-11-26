@@ -4,7 +4,7 @@ Odin bindings for [FMOD](https://www.fmod.com/).
 
 Includes `core`, `fsbank` and `studio` APIs. The `dll` and `lib` files are downloaded from <https://www.fmod.com/download>.
 
-[FMOD API documentation](https://www.fmod.com/docs/2.00/api/welcome.html)
+[FMOD API documentation](https://www.fmod.com/docs/2.03/api/welcome.html)
 
 Make sure to include the fmod logo on your project and register it on their website unless you're making a ton of money!
 Check out <https://www.fmod.com/attribution>.

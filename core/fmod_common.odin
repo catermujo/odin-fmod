@@ -7,7 +7,7 @@ package fmod_core
 /* This header is included by fmod.hpp (C++ interface) and fmod.h (C interface)             */
 /*                                                                                          */
 /* For more detail visit:                                                                   */
-/* https://fmod.com/docs/2.02/api/core-api-common.html                                      */
+/* https://fmod.com/docs/2.03/api/core-api-common.html                                      */
 /* ======================================================================================== */
 
 
@@ -48,6 +48,7 @@ Debug_Flag :: enum u8 {
     type_file,
     type_codec,
     type_trace,
+    virtual = 12,
     display_timestamps = 16,
     display_linenumbers,
     display_thread,
@@ -182,7 +183,6 @@ CHANNELMASK_7POINT1: ChannelMask : {.low_frequency} | CHANNELMASK_7POINT0
 
 Port_Index :: distinct uint
 PORT_INDEX_NONE: Port_Index : ~{}
-PORT_INDEX_FLAG_VR_CONTROLLER: Port_Index : 0x1000000000000000
 
 Thread_Priority :: distinct i32
 /* Platform specific priority range */
@@ -427,6 +427,7 @@ OutputType :: enum i32 {
     aaudio,
     audioworklet,
     phase,
+    ohaudio,
     max,
 }
 
@@ -597,6 +598,7 @@ DSPConnection_Type :: enum i32 {
     sidechain,
     send,
     send_sidechain,
+    preallocated,
     max,
 }
 
@@ -634,6 +636,8 @@ Port_Type :: enum i32 {
     personal,
     vibration,
     aux,
+    passthrough,
+    vr_vibration,
     max,
 }
 

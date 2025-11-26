@@ -8,7 +8,7 @@ package fmod_core
 // callbacks) to develop using the C interface
 //
 // For more detail visit:
-// https://fmod.com/docs/2.02/api/core-api.html
+// https://fmod.com/docs/2.03/api/core-api.html
 // ========================================================================================
 
 LOGGING_ENABLED :: #config(FMOD_LOGGING_ENABLED, ODIN_DEBUG)
@@ -111,7 +111,7 @@ foreign lib {
     System_GetSpeakerModeChannels :: proc(system: ^System, mode: SpeakerMode, channels: ^i32) -> Result ---
 
     // System information functions.
-    System_GetVersion :: proc(system: ^System, version: ^u32) -> Result ---
+    System_GetVersion :: proc(system: ^System, version, buildnumber: ^u32) -> Result ---
     System_GetOutputHandle :: proc(system: ^System, handle: ^rawptr) -> Result ---
     System_GetChannelsPlaying :: proc(system: ^System, channels: ^i32, realchannels: ^i32) -> Result ---
     System_GetCPUUsage :: proc(system: ^System, usage: ^CPU_Usage) -> Result ---
@@ -120,6 +120,7 @@ foreign lib {
     // Sound/DSP/Channel/FX creation and retrieval.
     System_CreateSound :: proc(system: ^System, name_or_data: cstring, mode: Mode, exinfo: ^CreateSoundExInfo, sound: ^^Sound) -> Result ---
     System_CreateStream :: proc(system: ^System, name_or_data: cstring, mode: Mode, exinfo: ^CreateSoundExInfo, sound: ^^Sound) -> Result ---
+    System_CreateDSPConnection :: proc(system: ^System, type: DSPConnection_Type, connection: ^^DSPConnection) -> Result ---
     System_CreateDSP :: proc(system: ^System, #by_ptr description: DSP_Description, dsp: ^^DSP) -> Result ---
     System_CreateDSPByType :: proc(system: ^System, _type: DSP_Type, dsp: ^^DSP) -> Result ---
     System_CreateChannelGroup :: proc(system: ^System, name: cstring, channelgroup: ^^ChannelGroup) -> Result ---

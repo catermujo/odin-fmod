@@ -9,7 +9,7 @@ package fmod_core
 /* register and use.  See the documentation and examples on how to make a working plugin.   */
 /*                                                                                          */
 /* For more detail visit:                                                                   */
-/* https://fmod.com/docs/2.02/api/plugin-api-dsp.html                                       */
+/* https://fmod.com/docs/2.03/api/plugin-api-dsp.html                                       */
 /* =========================================================================================*/
 
 
@@ -51,6 +51,8 @@ DSP_Parameter_Data_Type :: enum i32 {
     fft                 = -4,
     _3dattributes_multi = -5,
     attenuation_range   = -6,
+    dynamic_response    = -7,
+    finite_length       = -8,
 }
 
 

@@ -5,10 +5,10 @@ package fmod_studio
 /* Copyright (c), Firelight Technologies Pty, Ltd. 2004-2023.                               */
 /*                                                                                          */
 /* This header defines common enumerations, structs and callbacks that are shared between   */
-/* the C and C++ i32erfaces.                                                                */
+/* the C and C++ interfaces.                                                                */
 /*                                                                                          */
 /* For more detail visit:                                                                   */
-/* https://fmod.com/docs/2.02/api/studio-api.html                                           */
+/* https://fmod.com/docs/2.03/api/studio-api.html                                           */
 /* ======================================================================================== */
 
 import fmod "../core"
@@ -270,19 +270,19 @@ Buffer_Info :: struct {
     stalltime:    f32,
 }
 
-BUFFER_USAGE :: struct {
+Buffer_Usage :: struct {
     studiocommandqueue: Buffer_Info,
     studiohandle:       Buffer_Info,
 }
 
-SOUND_INFO :: struct {
+Sound_Info :: struct {
     name_or_data:  cstring,
     mode:          fmod.Mode,
     exinfo:        fmod.CreateSoundExInfo,
     subsoundindex: i32,
 }
 
-COMMAND_INFO :: struct {
+Command_Info :: struct {
     commandname:        cstring,
     parentcommandindex: i32,
     framenumber:        i32,
@@ -293,7 +293,7 @@ COMMAND_INFO :: struct {
     outputhandle:       u32,
 }
 
-MEMORY_USAGE :: struct {
+Memory_Usage :: struct {
     exclusive:  i32,
     inclusive:  i32,
     sampledata: i32,

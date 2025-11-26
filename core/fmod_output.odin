@@ -10,7 +10,7 @@ package fmod_core
 /* plugin.                                                                                  */
 /*                                                                                          */
 /* For more detail visit:                                                                   */
-/* https://fmod.com/docs/2.02/api/plugin-api-output.html                                    */
+/* https://fmod.com/docs/2.03/api/plugin-api-output.html                                    */
 /* ======================================================================================== */
 
 
