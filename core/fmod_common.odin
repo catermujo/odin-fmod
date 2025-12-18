@@ -1,5 +1,7 @@
 package fmod_core
 
+// import "core:c"
+
 /* ======================================================================================== */
 /* FMOD Core API - Common C/C++ header file.                                                */
 /* Copyright (c), Firelight Technologies Pty, Ltd. 2004-2023.                               */
@@ -227,7 +229,7 @@ THREAD_STACK_SIZE_STUDIO_LOAD_SAMPLE: Thread_Stack_Size : (96 * 1024)
 THREAD_STACK_SIZE_CONVOLUTION1: Thread_Stack_Size : (16 * 1024)
 THREAD_STACK_SIZE_CONVOLUTION2: Thread_Stack_Size : (16 * 1024)
 
-Thread_Affinity :: distinct int
+Thread_Affinity :: distinct i64
 /* Platform agnostic thread groupings */
 THREAD_AFFINITY_GROUP_DEFAULT: Thread_Affinity : 0x4000000000000000
 THREAD_AFFINITY_GROUP_A: Thread_Affinity : 0x4000000000000001
@@ -847,3 +849,4 @@ DSP_Data_Parameter_Info :: struct {
     length: u32,
     index:  i32,
 }
+
