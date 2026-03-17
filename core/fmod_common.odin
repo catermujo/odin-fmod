@@ -695,9 +695,9 @@ file_asyncread_callback :: #type proc "c" (info: ^AsyncReadInfo, userdata: rawpt
 file_asynccancel_callback :: #type proc "c" (info: ^AsyncReadInfo, userdata: rawptr) -> Result
 
 file_asyncdone_func :: #type proc "c" (info: ^AsyncReadInfo, result: Result)
-alloc_callback :: #type proc "c" (size: u32, _type: Memory_Type, sourcestr: cstring)
+alloc_callback :: #type proc "c" (size: u32, _type: Memory_Type, sourcestr: cstring) -> rawptr
 
-realloc_callback :: #type proc "c" (ptr: rawptr, size: u32, _type: Memory_Type, sourcestr: cstring)
+realloc_callback :: #type proc "c" (ptr: rawptr, size: u32, _type: Memory_Type, sourcestr: cstring) -> rawptr
 
 free_callback :: #type proc "c" (ptr: rawptr, _type: Memory_Type, sourcestr: cstring)
 _3d_rolloff_callback :: #type proc "c" (channelcontrol: ^ChannelControl, distance: f32) -> f32
