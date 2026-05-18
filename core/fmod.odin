@@ -19,11 +19,51 @@ when ODIN_OS == .Windows {
     } else {
         foreign import lib "fmod_vc.lib"
     }
+} else when ODIN_PLATFORM_SUBTARGET == .Android {
+    when ODIN_ARCH == .arm64 {
+        when LOGGING_ENABLED {
+            foreign import lib "android/arm64-v8a/libfmodL.so"
+        } else {
+            foreign import lib "android/arm64-v8a/libfmod.so"
+        }
+    } else when ODIN_ARCH == .arm32 {
+        when LOGGING_ENABLED {
+            foreign import lib "android/armeabi-v7a/libfmodL.so"
+        } else {
+            foreign import lib "android/armeabi-v7a/libfmod.so"
+        }
+    } else when ODIN_ARCH == .i386 {
+        when LOGGING_ENABLED {
+            foreign import lib "android/x86/libfmodL.so"
+        } else {
+            foreign import lib "android/x86/libfmod.so"
+        }
+    } else when ODIN_ARCH == .amd64 {
+        when LOGGING_ENABLED {
+            foreign import lib "android/x86_64/libfmodL.so"
+        } else {
+            foreign import lib "android/x86_64/libfmod.so"
+        }
+    }
 } else when ODIN_OS == .Darwin {
-    when LOGGING_ENABLED {
-        foreign import lib "libfmodL.dylib"
+    when ODIN_PLATFORM_SUBTARGET == .iPhone {
+        when LOGGING_ENABLED {
+            foreign import lib "ios/libfmodL_iphoneos.a"
+        } else {
+            foreign import lib "ios/libfmod_iphoneos.a"
+        }
+    } else when ODIN_PLATFORM_SUBTARGET == .iPhoneSimulator {
+        when LOGGING_ENABLED {
+            foreign import lib "ios/libfmodL_iphonesimulator.a"
+        } else {
+            foreign import lib "ios/libfmod_iphonesimulator.a"
+        }
     } else {
-        foreign import lib "libfmod.dylib"
+        when LOGGING_ENABLED {
+            foreign import lib "libfmodL.dylib"
+        } else {
+            foreign import lib "libfmod.dylib"
+        }
     }
 } else when ODIN_ARCH == .wasm32 || ODIN_ARCH == .wasm64p32 {
 }
@@ -1411,4 +1451,3 @@ when ODIN_ARCH == .wasm32 || ODIN_ARCH == .wasm64p32 {
 
     }
 }
-

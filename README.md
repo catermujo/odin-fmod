@@ -4,6 +4,14 @@ Odin bindings for [FMOD](https://www.fmod.com/).
 
 Includes `core`, `fsbank` and `studio` APIs. The `dll` and `lib` files are downloaded from <https://www.fmod.com/download>.
 
+Platform binaries in this repo:
+- Windows: `core/*.dll`, `studio/*.dll`, `*_vc.lib`
+- macOS: `core/libfmod*.dylib`, `studio/libfmodstudio*.dylib`
+- Linux: `core/linux_*`, `studio/linux_*`
+- WebAssembly: `core/wasm`, `studio/wasm`
+- Android: `core/android/<abi>`, `studio/android/<abi>`
+- iOS: `core/ios`, `studio/ios`
+
 [FMOD API documentation](https://www.fmod.com/docs/2.03/api/welcome.html)
 
 Make sure to include the fmod logo on your project and register it on their website unless you're making a ton of money!

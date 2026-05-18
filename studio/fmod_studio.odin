@@ -19,11 +19,51 @@ when ODIN_OS == .Windows {
     } else {
         foreign import lib "fmodstudio_vc.lib"
     }
+} else when ODIN_PLATFORM_SUBTARGET == .Android {
+    when ODIN_ARCH == .arm64 {
+        when fmod.LOGGING_ENABLED {
+            foreign import lib "android/arm64-v8a/libfmodstudioL.so"
+        } else {
+            foreign import lib "android/arm64-v8a/libfmodstudio.so"
+        }
+    } else when ODIN_ARCH == .arm32 {
+        when fmod.LOGGING_ENABLED {
+            foreign import lib "android/armeabi-v7a/libfmodstudioL.so"
+        } else {
+            foreign import lib "android/armeabi-v7a/libfmodstudio.so"
+        }
+    } else when ODIN_ARCH == .i386 {
+        when fmod.LOGGING_ENABLED {
+            foreign import lib "android/x86/libfmodstudioL.so"
+        } else {
+            foreign import lib "android/x86/libfmodstudio.so"
+        }
+    } else when ODIN_ARCH == .amd64 {
+        when fmod.LOGGING_ENABLED {
+            foreign import lib "android/x86_64/libfmodstudioL.so"
+        } else {
+            foreign import lib "android/x86_64/libfmodstudio.so"
+        }
+    }
 } else when ODIN_OS == .Darwin {
-    when fmod.LOGGING_ENABLED {
-        foreign import lib "libfmodstudioL.dylib"
+    when ODIN_PLATFORM_SUBTARGET == .iPhone {
+        when fmod.LOGGING_ENABLED {
+            foreign import lib "ios/libfmodstudioL_iphoneos.a"
+        } else {
+            foreign import lib "ios/libfmodstudio_iphoneos.a"
+        }
+    } else when ODIN_PLATFORM_SUBTARGET == .iPhoneSimulator {
+        when fmod.LOGGING_ENABLED {
+            foreign import lib "ios/libfmodstudioL_iphonesimulator.a"
+        } else {
+            foreign import lib "ios/libfmodstudio_iphonesimulator.a"
+        }
     } else {
-        foreign import lib "libfmodstudio.dylib"
+        when fmod.LOGGING_ENABLED {
+            foreign import lib "libfmodstudioL.dylib"
+        } else {
+            foreign import lib "libfmodstudio.dylib"
+        }
     }
 } else when ODIN_ARCH == .wasm32 || ODIN_ARCH == .wasm64p32 {
 }
@@ -513,4 +553,3 @@ when ODIN_ARCH == .wasm32 || ODIN_ARCH == .wasm64p32 {
         CommandReplay_SetUserData :: proc(replay: ^CommandReplay, userdata: rawptr) -> fmod.Result ---
     }
 }
-
