@@ -51,15 +51,16 @@ when ODIN_OS == .Windows {
 			when fmod.LOGGING_ENABLED {
 				foreign import lib "linux_arm64/libfmodstudioL.so"
 			} else {
-				foreign import lib "linux_x86_64/libfmodstudio.so"
+				foreign import lib "linux_arm64/libfmodstudio.so"
 			}
-		} else {
+		} else when ODIN_ARCH == .amd64 {
 			when fmod.LOGGING_ENABLED {
-				foreign import lib "linux_arm64/libfmodstudioL.so"
+				foreign import lib "linux_x86_64/libfmodstudioL.so"
 			} else {
 				foreign import lib "linux_x86_64/libfmodstudio.so"
 			}
-
+		} else {
+			#panic("vendor/fmod studio supports linux amd64/arm64 only")
 		}
 	}
 } else when ODIN_OS == .Darwin {

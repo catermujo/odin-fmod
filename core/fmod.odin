@@ -47,18 +47,20 @@ when ODIN_OS == .Windows {
 			}
 		}
 	} else {
-		when ODIN_ARCH == .amd64 {
+		when ODIN_ARCH == .arm64 {
 			when LOGGING_ENABLED {
 				foreign import lib "linux_arm64/libfmodL.so"
 			} else {
 				foreign import lib "linux_arm64/libfmod.so"
 			}
-		} else {
+		} else when ODIN_ARCH == .amd64 {
 			when LOGGING_ENABLED {
 				foreign import lib "linux_x86_64/libfmodL.so"
 			} else {
 				foreign import lib "linux_x86_64/libfmod.so"
 			}
+		} else {
+			#panic("vendor/fmod core supports linux amd64/arm64 only")
 		}
 	}
 } else when ODIN_OS == .Darwin {
