@@ -14,10 +14,20 @@ package fmod_studio
 import fmod "../core"
 
 when ODIN_OS == .Windows {
-    when fmod.LOGGING_ENABLED {
-        foreign import lib "fmodstudioL_vc.lib"
+    when ODIN_ARCH == .amd64 {
+        when fmod.LOGGING_ENABLED {
+            foreign import lib "windows_x64/fmodstudioL_vc.lib"
+        } else {
+            foreign import lib "windows_x64/fmodstudio_vc.lib"
+        }
+    } else when ODIN_ARCH == .arm64 {
+        when fmod.LOGGING_ENABLED {
+            foreign import lib "windows_arm64/fmodstudioL_vc.lib"
+        } else {
+            foreign import lib "windows_arm64/fmodstudio_vc.lib"
+        }
     } else {
-        foreign import lib "fmodstudio_vc.lib"
+        #panic("vendor/fmod studio supports windows amd64/arm64 only")
     }
 } else when ODIN_OS == .Linux {
     when ODIN_PLATFORM_SUBTARGET == .Android {
@@ -55,9 +65,9 @@ when ODIN_OS == .Windows {
             }
         } else when ODIN_ARCH == .amd64 {
             when fmod.LOGGING_ENABLED {
-                foreign import lib "linux_x86_64/libfmodstudioL.so"
+                foreign import lib "linux_x64/libfmodstudioL.so"
             } else {
-                foreign import lib "linux_x86_64/libfmodstudio.so"
+                foreign import lib "linux_x64/libfmodstudio.so"
             }
         } else {
             #panic("vendor/fmod studio supports linux amd64/arm64 only")
@@ -77,10 +87,20 @@ when ODIN_OS == .Windows {
             foreign import lib "ios/libfmodstudio_iphonesimulator.a"
         }
     } else {
-        when fmod.LOGGING_ENABLED {
-            foreign import lib "libfmodstudioL.dylib"
+        when ODIN_ARCH == .amd64 {
+            when fmod.LOGGING_ENABLED {
+                foreign import lib "darwin_x64/libfmodstudioL.dylib"
+            } else {
+                foreign import lib "darwin_x64/libfmodstudio.dylib"
+            }
+        } else when ODIN_ARCH == .arm64 {
+            when fmod.LOGGING_ENABLED {
+                foreign import lib "darwin_arm64/libfmodstudioL.dylib"
+            } else {
+                foreign import lib "darwin_arm64/libfmodstudio.dylib"
+            }
         } else {
-            foreign import lib "libfmodstudio.dylib"
+            #panic("vendor/fmod studio supports Darwin amd64/arm64 only")
         }
     }
 } else when ODIN_ARCH == .wasm32 || ODIN_ARCH == .wasm64p32 {
