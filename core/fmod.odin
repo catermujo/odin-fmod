@@ -11,17 +11,17 @@ package fmod_core
 // https://fmod.com/docs/2.03/api/core-api.html
 // ========================================================================================
 
-LOGGING_ENABLED :: #config(FMOD_LOGGING_ENABLED, ODIN_DEBUG)
+LOGGING :: #config(FMOD_LOGGING, ODIN_DEBUG)
 
 when ODIN_OS == .Windows {
     when ODIN_ARCH == .amd64 {
-        when LOGGING_ENABLED {
+        when LOGGING {
             foreign import lib "windows_x64/fmodL_vc.lib"
         } else {
             foreign import lib "windows_x64/fmod_vc.lib"
         }
     } else when ODIN_ARCH == .arm64 {
-        when LOGGING_ENABLED {
+        when LOGGING {
             foreign import lib "windows_arm64/fmodL_vc.lib"
         } else {
             foreign import lib "windows_arm64/fmod_vc.lib"
@@ -32,25 +32,25 @@ when ODIN_OS == .Windows {
 } else when ODIN_OS == .Linux {
     when ODIN_PLATFORM_SUBTARGET == .Android {
         when ODIN_ARCH == .arm64 {
-            when LOGGING_ENABLED {
+            when LOGGING {
                 foreign import lib "android/arm64-v8a/libfmodL.so"
             } else {
                 foreign import lib "android/arm64-v8a/libfmod.so"
             }
         } else when ODIN_ARCH == .arm32 {
-            when LOGGING_ENABLED {
+            when LOGGING {
                 foreign import lib "android/armeabi-v7a/libfmodL.so"
             } else {
                 foreign import lib "android/armeabi-v7a/libfmod.so"
             }
         } else when ODIN_ARCH == .i386 {
-            when LOGGING_ENABLED {
+            when LOGGING {
                 foreign import lib "android/x86/libfmodL.so"
             } else {
                 foreign import lib "android/x86/libfmod.so"
             }
         } else when ODIN_ARCH == .amd64 {
-            when LOGGING_ENABLED {
+            when LOGGING {
                 foreign import lib "android/x86_64/libfmodL.so"
             } else {
                 foreign import lib "android/x86_64/libfmod.so"
@@ -58,13 +58,13 @@ when ODIN_OS == .Windows {
         }
     } else {
         when ODIN_ARCH == .arm64 {
-            when LOGGING_ENABLED {
+            when LOGGING {
                 foreign import lib "linux_arm64/libfmodL.so"
             } else {
                 foreign import lib "linux_arm64/libfmod.so"
             }
         } else when ODIN_ARCH == .amd64 {
-            when LOGGING_ENABLED {
+            when LOGGING {
                 foreign import lib "linux_x64/libfmodL.so"
             } else {
                 foreign import lib "linux_x64/libfmod.so"
@@ -75,26 +75,26 @@ when ODIN_OS == .Windows {
     }
 } else when ODIN_OS == .Darwin {
     when ODIN_PLATFORM_SUBTARGET == .iPhone {
-        when LOGGING_ENABLED {
+        when LOGGING {
             foreign import lib "ios/libfmodL_iphoneos.a"
         } else {
             foreign import lib "ios/libfmod_iphoneos.a"
         }
     } else when ODIN_PLATFORM_SUBTARGET == .iPhoneSimulator {
-        when LOGGING_ENABLED {
+        when LOGGING {
             foreign import lib "ios/libfmodL_iphonesimulator.a"
         } else {
             foreign import lib "ios/libfmod_iphonesimulator.a"
         }
     } else {
         when ODIN_ARCH == .amd64 {
-            when LOGGING_ENABLED {
+            when LOGGING {
                 foreign import lib "darwin_x64/libfmodL.dylib"
             } else {
                 foreign import lib "darwin_x64/libfmod.dylib"
             }
         } else when ODIN_ARCH == .arm64 {
-            when LOGGING_ENABLED {
+            when LOGGING {
                 foreign import lib "darwin_arm64/libfmodL.dylib"
             } else {
                 foreign import lib "darwin_arm64/libfmod.dylib"
@@ -104,7 +104,7 @@ when ODIN_OS == .Windows {
         }
     }
 } else when ODIN_ARCH == .wasm32 || ODIN_ARCH == .wasm64p32 {
-    when LOGGING_ENABLED {
+    when LOGGING {
         foreign import _wasm "wasm/fmodL_wasm.a"
         foreign import _bind "wasm/fmodL_bindings.a"
         foreign import lib "wasm/fmodL_js.a"
