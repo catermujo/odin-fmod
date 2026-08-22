@@ -19,7 +19,7 @@ Check out <https://www.fmod.com/attribution>.
 
 <img width="124" height="36" alt="logo" src="https://github.com/user-attachments/assets/afbb648a-dcf4-4326-9fa0-b2ca3a4d215c" />
 
-Current FMOD version: `2.03.11`
+Current FMOD version: `2.03.14`
 
 ## TODO
 

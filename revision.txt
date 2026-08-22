@@ -1,7 +1,7 @@
 
 ==========================================================================================
                             REVISION HISTORY : FMOD Studio API                            
-                 Copyright (c) Firelight Technologies, Pty, Ltd, 2011-2025                
+                 Copyright (c) Firelight Technologies, Pty, Ltd, 2011-2026
                                    https://www.fmod.com                                   
 ==========================================================================================
 
@@ -12,9 +12,114 @@ Mac:     Apple macOS                   GameCore: Microsoft Game Core
 Linux:   Linux                         PS4:      Sony PlayStation 4
 iOS:     Apple iOS / tvOS              PS5:      Sony PlayStation 5
 Android: Google Android                Switch:   Nintendo Switch
-HTML5:   JavaScript WebAssembly        UWP:      Microsoft Universal Windows Platform
+HTML5:   JavaScript WebAssembly        Switch2:  Nintendo Switch 2
+UWP:     Microsoft Universal Windows Platform
 
-17/11/25 2.03.11 - Studio API minor release (build 158528)
+29/5/26 2.03.14 - Studio API minor release (build 164239)
+------------------------------------------------------------------------------------------
+
+Features:
+* Core API     - Added FMOD_Haptics_VR_Configure to toggle platform dependent VR
+                 feature support.
+
+Fixes:
+* Core API     - Fix potential rare loud noise bursts related to ThreeEQ and Compressor
+                 effects.
+* Core API     - Fixed silent high priority Channels taking resources away from
+                 audible low priority Channels causing them to go virtual.
+* Core API     - Fixed memory leak at shutdown when using FMOD_INIT_CHANNEL_LOWPASS
+                 or FMOD_INIT_CHANNEL_DISTANCEFILTER.
+* Core API     - Fixed ChannelGroup::get3DOcclusion returning 0 instead of the value
+                 set with ChannelGroup::set3DOcclusion.
+* Core API     - Fixed crashes in s3m/xm/it codecs with corrupted files.
+* Core API     - Fixed possible crash after calling System::mixerSuspend.
+* Core API     - Android - Fixed possible crash when stopping AAudio stream.
+* Core API     - PS5 - Fixed rare crash when closing a port.
+* Core API     - PS5 - Fixed crash when running out of direct memory for
+                 hardware-offloaded convolution reverb effect.
+* Unity        - Fixed NullReferenceException when instantiating a Studio Parameter
+                 Trigger in a playing scene.
+* Unity        - Fixed the integration failing to find built banks in custom directory
+                 structures.
+* Unity        - Removed 'List.Find' with predicates to avoid runtime allocations.
+* Unity        - Removed extra allocations from StudioEventEmitter.SetParameter.
+* Unreal       - Fixed deprecation warnings in UE5.5 integration.
+* Unreal       - Improve AudioLink performance.
+* Unreal       - Fixed third party plugins missing from build if filename includes
+                 a prefix.
+
+Notes:
+* GameCore     - Now built with October 2025 GDK Update 2.
+* PS5          - Now built with SDK 13.00.00.35.
+* Switch       - Now built with SDK 22.2.0.
+* Switch2      - Now built with SDK 22.2.0.
+* Core API     - Updated codec dependencies: Ogg (1.3.6), Vorbis (1.3.7), FLAC (1.5.0),
+                 Tremor Lowmem (22 Aug 2019).
+
+02/04/26 2.03.13 - Studio API minor release (build 162576)
+------------------------------------------------------------------------------------------
+
+Fixes:
+* Studio API   - Fixed instruments failing to play audibly when they are triggered
+                 exactly at the destination of a transition timeline with no destination
+                 region.
+* Core API     - Fixed FMOD_DSP_TYPE_COMPRESSOR and FMOD_DSP_TYPE_MULTIBAND_DYNAMICS
+                 not correctly mixing a sidechain input when its channel count was
+                 different to that of the main signal.
+* Core API     - Fixed DSP Echo crash when delay time changes.
+* Core API     - Mac - Fixed examples rendering buttons invisible on certain macOS
+                 / Xcode combinations.
+* Core API     - Android - Improved AAudio input stream startup time.
+* Core API     - GameCore - Fixed crash when using hardware convolution reverb.
+* Core API     - PS4 - Improved logging surrounding AudioOut and Audio3D initialization.
+* Core API     - PS5 - Improved logging surrounding AudioOut2 and allowed additional
+                 systems to init with spatial objects.
+* Unity        - Fixed an issue where active Studio Event Emitters could persist
+                 after their owning object was destroyed.
+* Unity        - Fixed potential for bank references to be lost when updating the
+                 integration.
+* Unreal       - Improved third party plugin inclusion by removing the need to manually
+                 create a text file.
+* Unreal       - Enable Unity Build to speed up project compilation.
+* Unreal       - Removed Precompiled headers and includes.
+* Unreal       - Fixed events not auditioning in Sequencer and Animations.
+
+15/01/26 2.03.12 - Studio API minor release (build 160365)
+------------------------------------------------------------------------------------------
+
+Features:
+* Studio API   - PS4 - Added haptics support.
+* Studio API   - Switch - Added haptics support.
+* Unity        - Added support for NativeArray to avoid Garbage Collection allocations
+                 when loading Addressables or using Studio::System::loadBankMemory.
+* Unity        - Plugins added to the `Editor` platform will now be loaded when
+                 auditioning events in the Event Browser.
+* Unity        - Dynamic plugins added to the Editor platform in the integration
+                 settings will now be loaded for auditioning in the Unity editor.
+
+Fixes:
+* Studio API   - Fixed live update blocking the game's main thread when swapping
+                 audio files on single instruments that are currently playing.
+* Studio API   - Win - Fixed haptics conflict between two instances of FMOD, i.e.
+                 Studio + Game for classic rumble motor controllers.
+* Studio API   - HTML5 - EventDescription::setCallback now returns FMOD_ERR_UNSUPPORTED
+                 rather than causing binding errors at runtime.
+* Core API     - Fixed click at end of looping PCM sounds that use Channel::setLoopCount.
+* Core API     - Mac - Fixed potential crash when loading plugins if the path gets
+                 too long.
+* Unity        - Fixed bank folders containing a dot not working correctly.
+* Unity        - Fixed deprecation warnings when adding the integration.
+* Unreal       - Replaced raw object pointers with TObjectPtr.
+* Unreal       - Fixed encrypted banks not working on MacOS.
+* Unreal       - Fixed issue where FMODAssetBuilder would wait for confirmation
+                 to delete files in unattended mode.
+* Unreal       - Fixed FMODAudioComponents logging errors if occlusion parameter
+                 is set in settings but event does not use it.
+* Unreal       - Fixed getBus error on Editor startup.
+* Unreal       - Fixed validation steps setting inconsistent Built Banks Output
+                 Directory path.
+
+18/11/25 2.03.11 - Studio API minor release (build 158528)
 ------------------------------------------------------------------------------------------
 
 Features:
@@ -180,6 +285,7 @@ Fixes:
 
 Notes:
 * Unity        - Added support for Unity 6.1.
+* Switch2      - Added Switch 2 platform.
 
 03/04/25 2.03.07 - Studio API minor release (build 150747)
 ------------------------------------------------------------------------------------------
@@ -6476,4 +6582,3 @@ Fixes:
 
 Notes:
 * First Developer Preview release
-
